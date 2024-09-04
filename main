@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur d'âge humain et chien</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p.result {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Convertisseur d'âge</h1>
+        <p>Entrez votre âge humain pour obtenir l'équivalent en âge de chien :</p>
+        <input type="number" id="humanAge" placeholder="Entrez votre âge">
+        <button onclick="convertToDogAge()">Convertir en âge de chien</button>
+        <p class="result" id="dogAgeResult"></p>
+
+        <hr>
+
+        <p>Entrez l'âge de votre chien pour obtenir l'équivalent en âge humain :</p>
+        <input type="number" id="dogAge" placeholder="Entrez l'âge de votre chien">
+        <button onclick="convertToHumanAge()">Convertir en âge humain</button>
+        <p class="result" id="humanAgeResult"></p>
+    </div>
+
+    <script>
+        function convertToDogAge() {
+            let humanAge = document.getElementById('humanAge').value;
+            if (humanAge === '' || isNaN(humanAge) || humanAge < 0) {
+                document.getElementById('dogAgeResult').innerHTML = "Veuillez entrer un âge valide.";
+                return;
+            }
+
+            let dogAge;
+            if (humanAge <= 2) {
+                dogAge = humanAge * 10.5;
+            } else {
+                dogAge = 21 + (humanAge - 2) * 4;
+            }
+
+            document.getElementById('dogAgeResult').innerHTML = "Votre âge en années de chien est : " + dogAge.toFixed(1);
+        }
+
+        function convertToHumanAge() {
+            let dogAge = document.getElementById('dogAge').value;
+            if (dogAge === '' || isNaN(dogAge) || dogAge < 0) {
+                document.getElementById('humanAgeResult').innerHTML = "Veuillez entrer un âge valide.";
+                return;
+            }
+
+            let humanAge;
+            if (dogAge <= 21) {
+                humanAge = dogAge *7
+            } else {
+                humanAge = 2 + (dogAge - 21) / 4;
+            }
+
+            document.getElementById('humanAgeResult').innerHTML = "L'âge équivalent en années humaines est : " + humanAge.toFixed(1);
+        }
+    </script>
+</body>
+</html>
